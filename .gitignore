@@ -1,0 +1,7 @@
+*.class
+*.kotlin_module
+*.jar
+*.MF
+
+*out/
+*target/
