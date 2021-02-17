@@ -12,15 +12,6 @@ fun String.isDouble(): Boolean {
     }
 }
 
-fun String.isInt(): Boolean {
-    return try {
-        this.toInt()
-        true
-    }catch (numberFormat: NumberFormatException){
-        false
-    }
-}
-
 fun String.toMutableList(): MutableList<String> {
     val mutableList = mutableListOf<String>()
     val tokens = StringTokenizer(this)

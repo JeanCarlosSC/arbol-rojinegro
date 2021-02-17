@@ -8,12 +8,8 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) {
-        new App();
+        App.INSTANCE.getContentPane();
         /*
-        Rojinegros arbol = new Rojinegros();
-        InputStreamReader entrada = new InputStreamReader(System.in);
-        BufferedReader teclado = new BufferedReader(entrada);
-        arbol.inicializar();
         String aux;
         int v;
         System.out.println("INSERTAR NODOS");

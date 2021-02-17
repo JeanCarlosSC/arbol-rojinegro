@@ -5,7 +5,7 @@ import lib.sRAD.gui.sComponent.SMenuBar
 import javax.swing.JMenu
 import javax.swing.JMenuItem
 
-class App: SFrame() {
+object App: SFrame() {
 
     init {
         addMenuBar()

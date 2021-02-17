@@ -61,7 +61,7 @@ public class Rojinegros {
         return x;
     }
 
-    public void insertar(int v) {
+    public Boolean insertar(int v) {
         Nodo gf, g, p, x;
         x = raiz;
         p = x;
@@ -78,8 +78,7 @@ public class Rojinegros {
                 p = x;
                 x = x.der;
             } else {
-                System.out.println(" La llave ya existe.." + v);
-                return;
+                return false;
             }
             if (x.izq.color == ROJO && x.der.color == ROJO) {
                 x = dividir(v, gf, g, p, x);
@@ -88,10 +87,11 @@ public class Rojinegros {
         x = new Nodo(v); // color sin asignar todavia
         x.llave = v;
         x.izq = x.der = z;
-        if (v < p.llave) {
+        if (v < p.llave)
             p.izq = x;
-        } else p.der = x;
+        else p.der = x;
         x = dividir(v, gf, g, p, x);
+        return true;
     }
 
     public void inorden(Nodo p) {
