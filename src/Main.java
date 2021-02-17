@@ -1,3 +1,4 @@
+import app.gui.App;
 import app.logic.Rojinegros;
 
 import java.io.BufferedReader;
@@ -7,6 +8,8 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) {
+        new App();
+        /*
         Rojinegros arbol = new Rojinegros();
         InputStreamReader entrada = new InputStreamReader(System.in);
         BufferedReader teclado = new BufferedReader(entrada);
@@ -54,6 +57,7 @@ public class Main {
         catch (IOException e1) {
             System.out.println("Error al abrir el teclado.");
         }
+        */
     }
 
 }
