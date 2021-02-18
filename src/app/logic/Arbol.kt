@@ -17,6 +17,11 @@ object Arbol: Rojinegros() {
         return nombres.isNotEmpty()
     }
 
+    override fun inicializar() {
+        super.inicializar()
+        nombres.clear()
+    }
+
     fun organizar() {
         if (nombres.isEmpty())
             return
@@ -24,6 +29,30 @@ object Arbol: Rojinegros() {
         reestablecerCoordenadas(raiz.der)
         moverNodo(raiz.der, 32, 32)
         moverHaciaDerecha(raiz.der)
+    }
+
+    fun inOrden(nodo: Nodo): String {
+        if(nodo != null && nodo.llave != raiz.llave) {
+            var nombre = "";
+            for (i in nombres) {
+                if (i[0] == nodo.llave.toString()) {
+                    nombre = i[1]
+                    break;
+                }
+            }
+            return inOrden(nodo.izq)+"%4d".format(nodo.llave)+" "+nombre+"\n"+inOrden(nodo.der);
+        }
+        return "";
+    }
+
+    override fun eliminar(arbol: Nodo, llave: Int) {
+        super.eliminar(arbol, llave)
+        for (i in nombres.indices) {
+            if (nombres[i][0] == llave.toString()) {
+                nombres.removeAt(i)
+                break;
+            }
+        }
     }
 
     private fun reestablecerCoordenadas(nodo: Nodo?) {
@@ -111,20 +140,6 @@ object Arbol: Rojinegros() {
             if (nodo.der.llave != nodo.llave)
                 moverHaciaDerecha(nodo.der)
         }
-    }
-
-    fun inOrden(nodo: Nodo): String {
-        if(nodo != null && nodo.llave != raiz.llave) {
-            var nombre = "";
-            for (i in nombres) {
-                if (i[0] == nodo.llave.toString()) {
-                    nombre = i[1]
-                    break;
-                }
-            }
-            return inOrden(nodo.izq)+"%d".formatted(nodo.llave)+" "+nombre+"\n"+inOrden(nodo.der);
-        }
-        return "";
     }
 
 }

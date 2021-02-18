@@ -41,6 +41,7 @@ object Grafica: SScrollPane(394, 96, 764, 550) {
         if(Arbol.isNotEmpty()) {
             dibujar(Arbol.raiz.der)
         }
+        ToolPane.inOrden()
         pInterno.repaint()
     }
 

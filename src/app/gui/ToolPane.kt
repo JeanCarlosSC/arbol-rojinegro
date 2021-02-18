@@ -1,15 +1,15 @@
 package app.gui
 
 import app.logic.Arbol
+import lib.sRAD.gui.component.Resource.fontTitle
 import lib.sRAD.gui.component.VentanaEmergente
-import lib.sRAD.gui.sComponent.SButton
-import lib.sRAD.gui.sComponent.SLabel
-import lib.sRAD.gui.sComponent.SPanel
-import lib.sRAD.gui.sComponent.STextField
+import lib.sRAD.gui.sComponent.*
 import lib.sRAD.logic.Extension.isInt
 import javax.swing.JOptionPane
 
 object ToolPane: SPanel(142, 96, 220, 550) {
+
+    val pInOrden: SPanel
 
     init {
         val btAdd = SButton(0, 0, 220, 32, "Añadir")
@@ -31,7 +31,7 @@ object ToolPane: SPanel(142, 96, 220, 550) {
         }
         add(btClear)
 
-        val pInOrden = SPanel(0, 120, 220, 430)
+        pInOrden = SPanel(0, 120, 220, 430)
         add(pInOrden)
     }
 
@@ -49,7 +49,7 @@ object ToolPane: SPanel(142, 96, 220, 550) {
 
         val taName = STextField(190, 60, 140, 32)
         taName.addActionListener {
-            if(isInt(taNum.text) && taName.text.isNotEmpty()) {
+            if(isInt(taNum.text) && taName.text.isNotEmpty() && taNum.text.toInt()>0) {
                 Arbol.insertar(taNum.text.toInt(), taName.text)
                 Grafica.actualizar()
             }
@@ -70,11 +70,47 @@ object ToolPane: SPanel(142, 96, 220, 550) {
     }
 
     fun abrirVentanaRetirar() {
+        val ventana = VentanaEmergente(App, 500, 80)
 
+        val lText = SLabel(30, 23, 240, 28,"Remueva un código ")
+        ventana.add(lText)
+
+        val taNum = STextField(235, 21, 100, 32)
+        taNum.addActionListener {
+            if(isInt(taNum.text) && taNum.text.toInt()>0) {
+                Arbol.eliminar(Arbol.raiz, taNum.text.toInt())
+                Grafica.actualizar()
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Ingrese un número entero", "Error", JOptionPane.ERROR_MESSAGE)
+            }
+            ventana.cerrar()
+        }
+        ventana.add(taNum)
+
+        val btCancelar = SButton(355, 21, 100, 32, "Cancelar")
+        btCancelar.addActionListener {
+            ventana.cerrar()
+        }
+        ventana.add(btCancelar)
+
+        ventana.lanzar()
     }
 
     fun abrirVentanaConsultar() {
 
+    }
+
+    fun inOrden() {
+        pInOrden.removeAll()
+        if (Arbol.isNotEmpty()) {
+            val lInOrden = SLabel(32, 22, 150, 32, "In-orden:", fontTitle)
+            pInOrden.add(lInOrden)
+
+            val lList = STextArea(32, 54, 150, 370, Arbol.inOrden(Arbol.raiz.der))
+            pInOrden.add(lList)
+        }
+        pInOrden.repaint()
     }
 
 }

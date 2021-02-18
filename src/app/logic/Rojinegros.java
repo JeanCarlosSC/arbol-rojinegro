@@ -50,10 +50,8 @@ public class Rojinegros {
         if (p.color == ROJO) {
             g.color = ROJO;
             if (v < g.llave != v < p.llave) {
-                System.out.println("sentido contrario-" + g.llave);
                 p = rotar(v, g);
             }
-            System.out.println("mismo sentido-" + gf.llave);
             x = rotar(v, gf);
             x.color = NEGRO;
         }
@@ -94,26 +92,6 @@ public class Rojinegros {
         return true;
     }
 
-    public void inorden(Nodo p) {
-        if (p != z) {
-            inorden(p.izq);
-            if (p.color == ROJO)
-                System.out.print(" " + p.llave + "" + "R");
-            else System.out.print(" " + p.llave + "" + "N");
-            inorden(p.der);
-        }
-    }
-
-    public void preorden(Nodo p) {
-        if (p != z) {
-            if (p.color == ROJO)
-                System.out.print(" " + p.llave + "" + "R");
-            else System.out.print(" " + p.llave + "" + "N");
-            preorden(p.izq);
-            preorden(p.der);
-        }
-    }
-
     boolean colorRojo(Nodo raiz) {
         return raiz != z && raiz.color == ROJO;
     }
@@ -121,12 +99,10 @@ public class Rojinegros {
     Nodo simpleRotacion(Nodo raiz, int dir) {
         Nodo temp;
         if (dir == 1) {
-            System.out.println("Simple Rotacion a la der.");
             temp = raiz.izq;
             raiz.izq = temp.der;
             temp.der = raiz;
         } else {
-            System.out.println("Simple Rotacion a la izq.");
             temp = raiz.der;
             raiz.der = temp.izq;
             temp.izq = raiz;
@@ -216,10 +192,8 @@ public class Rojinegros {
                                 else r2 = g.der;
                                 if (colorRojo(r1)) {
                                     if (dir2 == 0) {
-                                        System.out.println("Doble Rotacion a la izq.");
                                         g.izq = dobleRotacion(p, anterior);
                                     } else {
-                                        System.out.println("Doble Rotacion a la der.");
                                         g.der = dobleRotacion(p, anterior);
                                     }
                                 } else if (colorRojo(v1)) {
@@ -248,8 +222,6 @@ public class Rojinegros {
                     p.der = h;
                 else p.izq = h;
                 q = null;
-            } else {
-                System.out.println(" ! No existe la llave " + llave);
             }
             arbol.der = cabeza.der;
             cabeza = null;
