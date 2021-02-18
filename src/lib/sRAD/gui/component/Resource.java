@@ -126,6 +126,7 @@ public class Resource {
     public final static Border ta2Border = BorderFactory.createLineBorder(ta2, 2, false);
     public final static Border ta4Border = BorderFactory.createLineBorder(ta4, 2, false);
     public final static Border ta6Border = BorderFactory.createLineBorder(ta6, 2, false);
+    public final static Border ta7Border = BorderFactory.createLineBorder(ta7, 2, false);
 
     //special palette 1
     public final static Border darkOcherBorder = BorderFactory.createLineBorder(darkOcher, 2, false);

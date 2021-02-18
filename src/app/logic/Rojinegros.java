@@ -4,10 +4,10 @@ public class Rojinegros {
 
     Nodo raiz;
     Nodo z;
-    final int NEGRO = 0;
-    final int ROJO = 1;
+    public static final int NEGRO = 0;
+    public static final int ROJO = 1;
 
-    public Nodo raiz() {
+    public Nodo getRaiz() {
         return raiz;
     }
 
