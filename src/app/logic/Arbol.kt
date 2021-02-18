@@ -1,7 +1,7 @@
 package app.logic
 
 object Arbol: Rojinegros() {
-    private val nombres = mutableListOf<MutableList<String>>()
+    val nombres = mutableListOf<MutableList<String>>()
     private var minimo = 0
 
     init {

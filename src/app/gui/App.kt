@@ -4,6 +4,7 @@ import lib.sRAD.gui.sComponent.SFrame
 import lib.sRAD.gui.sComponent.SMenuBar
 import javax.swing.JMenu
 import javax.swing.JMenuItem
+import javax.swing.JOptionPane
 
 object App: SFrame() {
 
@@ -24,6 +25,13 @@ object App: SFrame() {
         menuBar.add(help)
 
         val about = JMenuItem("About")
+        about.addActionListener {
+            JOptionPane.showMessageDialog(null, "" +
+                    "This software has been developed by Jean Carlos Santoya Cabrera." +
+                    "\nReferences:" +
+                    "\n - https://porcomputador.com/", "About", JOptionPane.INFORMATION_MESSAGE
+            )
+        }
         help.add(about)
 
         add(menuBar)

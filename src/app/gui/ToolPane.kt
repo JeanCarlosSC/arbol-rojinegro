@@ -98,7 +98,37 @@ object ToolPane: SPanel(142, 96, 220, 550) {
     }
 
     fun abrirVentanaConsultar() {
+        val ventana = VentanaEmergente(App, 500, 80)
 
+        val lText = SLabel(30, 23, 240, 28,"Consulte un código ")
+        ventana.add(lText)
+
+        val taNum = STextField(235, 21, 100, 32)
+        taNum.addActionListener {
+            if(isInt(taNum.text) && taNum.text.toInt()>0) {
+                var nombre = "El código ${taNum.text} no se encuentra en el árbol"
+                for (i in Arbol.nombres) {
+                    if (i[0] == taNum.text) {
+                        nombre = "El nombre de ${taNum.text} es ${i[1]}"
+                        break;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, nombre, "Consulta", JOptionPane.INFORMATION_MESSAGE)
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Ingrese un número entero", "Error", JOptionPane.ERROR_MESSAGE)
+            }
+            ventana.cerrar()
+        }
+        ventana.add(taNum)
+
+        val btCancelar = SButton(355, 21, 100, 32, "Cancelar")
+        btCancelar.addActionListener {
+            ventana.cerrar()
+        }
+        ventana.add(btCancelar)
+
+        ventana.lanzar()
     }
 
     fun inOrden() {
